@@ -25,7 +25,7 @@ void execmd(char **argv)
 		}
 		else
 		{
-			write(2, " qwerty: not found\n", 18);
+			write(2, "qwerty: not found\n", 18);
 			exit(1);
 		}
 	}

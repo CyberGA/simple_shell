@@ -13,6 +13,7 @@ int main(void)
 	char **argv;
 	size_t i, count;
 	int stat;
+	pid_t childPid;
 
 	while (1)
 	{
@@ -22,12 +23,14 @@ int main(void)
 		if (charRead == -1)
 		{
 			write(1, "Bye from my shell....\n", 22);
+			free(buffer);
 			return (-1);
 		}
 		buffer2 = malloc(sizeof(char) * charRead + 1);
 		if (buffer2 == NULL)
 		{
 			perror("Mem. allocation failed");
+			free(buffer);
 			return (-1);
 		}
 		_strcpy(buffer2, buffer);
@@ -43,12 +46,13 @@ int main(void)
 		{
 			argv[i] = malloc(sizeof(char) * _strlen(split) + 1);
 			_strcpy(argv[i], split);
-			write(1, argv[i], _strlen(split));
-			/*write(1, "\n", 1);*/
+			/*write(1, argv[i], _strlen(split));
+			write(1, "\n", 1);*/
 			split = strtok(NULL, delim);
 		}
 		argv[i] = NULL;
-		if (fork() == 0)
+		childPid = fork();
+		if (childPid == 0)
 		{
 			execmd(argv);
 		}
