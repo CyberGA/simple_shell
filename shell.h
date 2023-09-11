@@ -14,5 +14,6 @@ int _strlen(char *s);
 char *_strcat(char *buff2, char *buff);
 void execmd(char **argv);
 char *fileLocation(char *linCom);
+int _strcmp(char *str1, char *str2);
 
 #endif /*SHELL.H*/

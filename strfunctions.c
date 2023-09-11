@@ -55,3 +55,23 @@ char *_strcat(char *buff2, char *buff)
 	*buff2 = '\0';
 	return (ptr);
 }
+/**
+ * _strcmp - a function that compares two strings
+ * @str1:string to be checked
+ * @str2: string to be checked
+ * Return: 0 positive or negative
+ */
+int _strcmp(char *str1, char *str2)
+{
+	while (*str1 != '\0' && *str2 != '\0')
+	{
+		if (*str1 == *str2)
+		{
+			str1++;
+			str2++;
+		}
+		else
+			return (*str1 - *str2);
+	}
+	return (0);
+}

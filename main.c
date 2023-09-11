@@ -7,7 +7,7 @@ int main(void)
 {
 	size_t n = 0;
 	char *buffer = NULL, *split;
-	char *buffer2 = NULL;
+	char *buffer2 = NULL, comp;
 	const char *delim = " \n,'";
 	ssize_t charRead;
 	char **argv;
@@ -40,6 +40,7 @@ int main(void)
 			count++;
 			split = strtok(NULL, delim);
 		}
+		printf("%ld\n", count);
 		argv = malloc(sizeof(char *) * count + 1);
 		split = strtok(buffer2, delim);
 		for (i = 0; split != NULL; i++)
@@ -47,10 +48,15 @@ int main(void)
 			argv[i] = malloc(sizeof(char) * _strlen(split) + 1);
 			_strcpy(argv[i], split);
 			/*write(1, argv[i], _strlen(split));
-			write(1, "\n", 1);*/
+			  write(1, "\n", 1);*/
 			split = strtok(NULL, delim);
 		}
 		argv[i] = NULL;
+		comp = _strcmp(argv[0], "exit");
+		if (count == 1 && comp == 0)
+		{
+			exit(0);
+		}
 		childPid = fork();
 		if (childPid == 0)
 		{
