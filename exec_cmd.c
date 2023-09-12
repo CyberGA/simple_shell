@@ -2,12 +2,14 @@
 /**
  * execmd - a function to handle command execution
  * @argv: list of argument variabes
+ * @envp: list of environment variables
  * Return: nothing
  */
-void execmd(char **argv)
+void execmd(char **argv, char **envp)
 {
-	char *execute = NULL;
-	char *findPath = NULL;
+	char *execute = NULL, *findPath = NULL;
+	pid_t childPid;
+	int stat;
 
 	if (argv)
 	{
@@ -15,13 +17,18 @@ void execmd(char **argv)
 		findPath = fileLocation(execute);
 		if (findPath != NULL)
 		{
-			if (execve(findPath, argv, NULL) == -1)
+			childPid = fork();
+			if (childPid == 0)
 			{
-				write(2, " 1: qwerty: not found ", 22);
-				/*write(2, execute, _strlen(execute));*/
-				write(2, "\n", 1);
-				exit(1);
+				if (execve(findPath, argv, envp) == -1)
+				{
+					write(2, " 1: qwerty: not found ", 22);
+					write(2, "\n", 1);
+					exit(1);
+				}
 			}
+			else
+				wait(&stat);
 		}
 		else
 		{
@@ -30,7 +37,7 @@ void execmd(char **argv)
 		}
 	}
 	else
-	{   
+	{
 		write(2, "Invalid command\n", 16);
 		exit(1);
 	}
