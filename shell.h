@@ -21,5 +21,6 @@ int _strcmp(char *str1, char *str2);
 char **get_cmd(char *, size_t, char *, char *);
 char *get_path(char *, char *, char *, size_t,
 		stat_t, char *);
+int _emptystr(char *buffer);
 
 #endif /*SHELL.H*/

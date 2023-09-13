@@ -18,9 +18,9 @@ int main(__attribute__((unused)) int argc,
 	{
 		write(1, "$ ", 2);
 		charRead = getline(&buffer, &n, stdin);
-		if (charRead == 1)
-			continue;
 		end_of_file(buffer, charRead);
+		if (_emptystr(buffer) == 1)
+			continue;
 		buffer2 = malloc(sizeof(char) * charRead + 1);
 		if (buffer2 == NULL)
 		{

@@ -75,3 +75,22 @@ int _strcmp(char *str1, char *str2)
 	}
 	return (0);
 }
+/**
+ * _emptystr - a function that checks if a string is empty
+ * @buffer: string to be checked
+ * Return: 0 if not only space else 1
+ */
+int _emptystr(char *buffer)
+{
+	int i = 0;
+
+	while (buffer[i] != '\0')
+	{
+		if (buffer[i] != ' ' && buffer[i] != '\n')
+		{
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
