@@ -1,5 +1,5 @@
 #include "shell.h"
-/**
+/**#include errors detected. Please update your includePath. Squiggles are disabled for this translation unit (\\wsl.localhost\Ubuntu\home\derasine\simple_shell\str_functions.c).C/C++(1696)
  * _strcpy - a function that copies the string pointed to by src
  * @buff2: string to copy a string
  * @buff: string to be copied from

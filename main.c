@@ -7,7 +7,7 @@
  * Return: 0 or 1 or otherwise
  */
 int main(__attribute__((unused)) int argc,
-		__attribute__((unused)) char **argv, char **envp)
+		 __attribute__((unused)) char **argv, char **envp)
 {
 	size_t n = 0, i;
 	char *buffer = NULL, *split = NULL, *buffer2 = NULL;
@@ -17,7 +17,7 @@ int main(__attribute__((unused)) int argc,
 	while (1)
 	{
 		write(1, "$ ", 2);
-		charRead = getline(&buffer, &n, stdin);
+		charRead = _myGetline(&buffer, &n, stdin);
 		end_of_file(buffer, charRead);
 		if (_emptystr(buffer) == 1)
 			continue;

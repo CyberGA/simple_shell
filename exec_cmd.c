@@ -26,6 +26,8 @@ void execmd(char **argv, char **envp)
 					write(2, "\n", 1);
 				}
 			}
+			else if (childPid == -1)
+				exit(1);
 			else
 				wait(&stat);
 		}

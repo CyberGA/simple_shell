@@ -22,5 +22,6 @@ char **get_cmd(char *, size_t, char *, char *);
 char *get_path(char *, char *, char *, size_t,
 		stat_t, char *);
 int _emptystr(char *buffer);
+int _myGetline(char **lineptr, size_t *n, FILE *stream);
 
 #endif /*SHELL.H*/
