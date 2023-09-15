@@ -18,19 +18,19 @@ char **get_cmd(char *split,
 	int i;
 	const char *delim = " \n,'";
 
-	split = strtok(buffer, delim);
+	split = _strtokenizer(buffer, delim);
 	while (split != NULL)
 	{
 		count++;
-		split = strtok(NULL, delim);
+		split = _strtokenizer(NULL, delim);
 	}
 	argv = malloc(sizeof(char *) * count + 1);
-	split = strtok(buffer2, delim);
+	split = _strtokenizer(buffer2, delim);
 	for (i = 0; split != NULL; i++)
 	{
 		argv[i] = malloc(sizeof(char) * _strlen(split) + 1);
 		_strcpy(argv[i], split);
-		split = strtok(NULL, delim);
+		split = _strtokenizer(NULL, delim);
 	}
 	argv[i] = NULL;
 	comp = _strcmp(argv[0], "exit");

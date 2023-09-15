@@ -21,7 +21,7 @@ char *fileLocation(char *linCom)
 			return (NULL);
 		}
 		lenOfCommand = _strlen(linCom);
-		pathToken = strtok(path2, ":");
+		pathToken = _strtokenizer(path2, ":");
 		return (get_path(pathToken, linCom, path2, lenOfCommand, buff, filePath));
 	}
 	else

@@ -23,5 +23,8 @@ char *get_path(char *, char *, char *, size_t,
 		stat_t, char *);
 int _emptystr(char *buffer);
 int _myGetline(char **lineptr, size_t *n, FILE *stream);
+char *_strtokenizer(char *, const char *);
+void arr_cleaner(char **strArr);
+int is_delimiter(char, const char *);
 
 #endif /*SHELL.H*/

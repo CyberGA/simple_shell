@@ -7,9 +7,9 @@
  * Return: 0 or 1 or otherwise
  */
 int main(__attribute__((unused)) int argc,
-		 __attribute__((unused)) char **argv, char **envp)
+		__attribute__((unused)) char **argv, char **envp)
 {
-	size_t n = 0, i;
+	size_t n = 0;
 	char *buffer = NULL, *split = NULL, *buffer2 = NULL;
 	ssize_t charRead;
 	char **args;
@@ -31,11 +31,7 @@ int main(__attribute__((unused)) int argc,
 		_strcpy(buffer2, buffer);
 		args = get_cmd(split, 0, buffer, buffer2);
 		execmd(args, envp);
-		for (i = 0; args[i] != NULL; i++)
-		{
-			free(args[i]);
-		}
-		free(args);
+		arr_cleaner(args);
 		free(buffer2);
 	}
 	free(buffer);

@@ -37,7 +37,7 @@ char *get_path(char *pathToken, char *linCom, char *path2,
 		else
 		{
 			free(filePath);
-			pathToken = strtok(NULL, ":");
+			pathToken = _strtokenizer(NULL, ":");
 		}
 	}
 	free(path2);
