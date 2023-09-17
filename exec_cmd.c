@@ -7,14 +7,14 @@
  */
 void execmd(char **argv, char **envp)
 {
-	char *execute = NULL, *findPath = NULL;
+	char *execute = NULL, *findPath = NULL, *filePath = NULL;
 	pid_t childPid;
 	int stat;
 
 	if (argv)
 	{
 		execute = argv[0];
-		findPath = fileLocation(execute);
+		findPath = fileLocation(execute, filePath);
 		if (findPath != NULL)
 		{
 			childPid = fork();
@@ -30,11 +30,10 @@ void execmd(char **argv, char **envp)
 				exit(1);
 			else
 				wait(&stat);
+			free(findPath);
 		}
 		else
-		{
 			write(2, "qwerty: not found\n", 18);
-		}
 	}
 	else
 	{

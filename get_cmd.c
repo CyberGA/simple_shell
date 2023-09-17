@@ -1,6 +1,34 @@
 #include "shell.h"
 
 /**
+ * exit_with_status - a function that exit with status
+ * @count: number or shell args
+ * @comp: 0 if exit, 1 if not
+ * @argv: pointer to shell args
+ * @buffer: string memory to be freed
+ * @buffer2: string memory needed to be freed
+ */
+void exit_with_status(size_t count, int comp, char **argv,
+		char *buffer, char *buffer2)
+{
+	int status = 0;
+
+	if (count == 1 && comp == 0)
+	{
+		free(buffer);
+		free(buffer2);
+		exit(status);
+	}
+	else if (count > 1 && comp == 0)
+	{
+		status = atoi(argv[1]);
+		free(buffer);
+		free(buffer2);
+		arr_cleaner(argv);
+		exit(status);
+	}
+}
+/**
  * get_cmd - function to get command
  * @split: pointer to split
  * @c: size_t c
@@ -12,10 +40,9 @@ char **get_cmd(char *split,
 		size_t c,
 		char *buffer, char *buffer2)
 {
-	char **argv;
-	char comp;
+	char **argv = NULL;
+	int comp, i;
 	size_t count = c;
-	int i;
 	const char *delim = " \n,'";
 
 	split = _strtokenizer(buffer, delim);
@@ -24,17 +51,28 @@ char **get_cmd(char *split,
 		count++;
 		split = _strtokenizer(NULL, delim);
 	}
-	argv = malloc(sizeof(char *) * count + 1);
+	argv = malloc(sizeof(char *) * (count + 1));
+	if (argv == NULL)
+	{
+		free(buffer);
+		free(buffer2);
+		exit(EXIT_FAILURE);
+	}
 	split = _strtokenizer(buffer2, delim);
 	for (i = 0; split != NULL; i++)
 	{
-		argv[i] = malloc(sizeof(char) * _strlen(split) + 1);
+		argv[i] = malloc(sizeof(char) * (_strlen(split) + 1));
+		if (argv[i] == NULL)
+		{
+			free(buffer);
+			free(buffer2);
+			exit(EXIT_FAILURE);
+		}
 		_strcpy(argv[i], split);
 		split = _strtokenizer(NULL, delim);
 	}
 	argv[i] = NULL;
 	comp = _strcmp(argv[0], "exit");
-	if (count == 1 && comp == 0)
-		exit(0);
+	exit_with_status(count, comp, argv, buffer, buffer2);
 	return (argv);
 }

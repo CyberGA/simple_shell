@@ -2,13 +2,14 @@
 /**
  * fileLocation - generate the path for each command
  * @linCom: command line argument
+ * @filePath: filePath of the arg
  * Return: char
  */
-char *fileLocation(char *linCom)
+char *fileLocation(char *linCom, char *filePath)
 {
 	char *path = NULL, *path2 = NULL;
 	size_t lenOfCommand;
-	char *pathToken = NULL, *filePath = NULL;
+	char *pathToken = NULL;
 	stat_t buff;
 
 	path = getenv("PATH");

@@ -16,7 +16,7 @@ char *_strcpy(char *buff2, char *buff);
 int _strlen(char *s);
 char *_strcat(char *buff2, char *buff);
 void execmd(char **argv, char **envp);
-char *fileLocation(char *linCom);
+char *fileLocation(char *linCom, char *);
 int _strcmp(char *str1, char *str2);
 char **get_cmd(char *, size_t, char *, char *);
 char *get_path(char *, char *, char *, size_t,

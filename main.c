@@ -12,7 +12,7 @@ int main(__attribute__((unused)) int argc,
 	size_t n = 0;
 	char *buffer = NULL, *split = NULL, *buffer2 = NULL;
 	ssize_t charRead;
-	char **args;
+	char **args = NULL;
 
 	while (1)
 	{
