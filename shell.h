@@ -15,6 +15,7 @@ void end_of_file(char *, ssize_t);
 char *_strcpy(char *buff2, char *buff);
 int _strlen(char *s);
 char *_strcat(char *buff2, char *buff);
+char *_strdup(const char *originalString);
 void execmd(char **argv, char **envp);
 char *fileLocation(char *linCom, char *);
 int _strcmp(char *str1, char *str2);

@@ -15,7 +15,7 @@ char *fileLocation(char *linCom, char *filePath)
 	path = getenv("PATH");
 	if (path)
 	{
-		path2 = strdup(path);
+		path2 = _strdup((const char *)path);
 		if (path2 == NULL)
 		{
 			perror("strdup");

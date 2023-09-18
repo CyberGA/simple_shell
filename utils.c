@@ -36,3 +36,23 @@ int is_delimiter(char c, const char *delimiter)
 	}
 	return (0);
 }
+
+/**
+ * _strdup - a function that duplicates a string
+ * @originalString: string to be duplicated
+ * Return: duplicated string
+ */
+char *_strdup(const char *originalString)
+{
+	size_t len;
+	char *dup;
+
+	len = strlen(originalString);
+	dup = (char *)malloc((len + 1) * sizeof(char));
+
+	if (dup != NULL)
+	{
+		_strcpy(dup, (char *)originalString);
+	}
+	return (dup);
+}
