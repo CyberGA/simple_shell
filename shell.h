@@ -26,5 +26,7 @@ int _myGetline(char **lineptr, size_t *n, FILE *stream);
 char *_strtokenizer(char *, const char *);
 void arr_cleaner(char **strArr);
 int is_delimiter(char, const char *);
+void processSetenv(char *variable, char *value);
+void processUnsetenv(char *variable);
 
 #endif /*SHELL.H*/
