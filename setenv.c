@@ -11,7 +11,7 @@ void processSetenv(char *variable, char *value)
 	char *setenvPath;
 	int setResult;
 
-	setenvPath = getenv(variable);
+	setenvPath = getenv("PATH");
 	if (setenvPath != NULL)
 		setResult = setenv(variable, value, 1);
 	else
@@ -28,7 +28,7 @@ void processUnsetenv(char *variable)
 	char *unsetenvPath;
 	int unsetResult;
 
-	unsetenvPath = getenv(variable);
+	unsetenvPath = getenv("PATH");
 	if (unsetenvPath != NULL)
 	{
 		unsetResult = unsetenv(variable);
