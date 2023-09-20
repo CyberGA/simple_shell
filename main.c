@@ -18,7 +18,11 @@ int main(__attribute__((unused)) int argc,
 	{
 		write(1, "$ ", 2);
 		charRead = _myGetline(&buffer, &n, stdin);
-		end_of_file(buffer, charRead);
+		if (charRead == -1)
+		{
+			free(buffer);
+			return (EXIT_SUCCESS);
+		}
 		if (_emptystr(buffer) == 1)
 			continue;
 		buffer2 = malloc(sizeof(char) * charRead + 1);
