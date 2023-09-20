@@ -22,8 +22,8 @@ void execmd(char **argv, char **envp)
 			{
 				if (execve(findPath, argv, envp) == -1)
 				{
-					write(2, " 1: qwerty: not found ", 22);
-					write(2, "\n", 1);
+					write(STDERR_FILENO, execute, _strlen(execute));
+					write(STDERR_FILENO, ": command not found\n", 21);
 				}
 			}
 			else if (childPid == -1)
@@ -33,11 +33,14 @@ void execmd(char **argv, char **envp)
 			free(findPath);
 		}
 		else
-			write(2, "qwerty: not found\n", 18);
+		{
+			write(STDERR_FILENO, execute, _strlen(execute));
+			write(STDERR_FILENO, ": command not found\n", 21);
+		}
 	}
 	else
 	{
-		write(2, "Invalid command\n", 16);
-		exit(1);
+		write(STDERR_FILENO, "Invalid command\n", 17);
+		exit(EXIT_FAILURE);
 	}
 }

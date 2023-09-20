@@ -16,7 +16,6 @@ int main(__attribute__((unused)) int argc,
 
 	while (1)
 	{
-		/*write(1, "$ ", 2);*/
 		charRead = _myGetline(&buffer, &n, stdin);
 		end_of_file(buffer, charRead);
 		_trimbuff(buffer);

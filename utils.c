@@ -90,7 +90,7 @@ int _putchar(char c)
 
 	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
-		write(1, buf, i);
+		write(STDOUT_FILENO, buf, i);
 		i = 0;
 	}
 	if (c != BUF_FLUSH)

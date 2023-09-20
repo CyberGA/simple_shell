@@ -46,7 +46,7 @@ int _myGetline(char **lineptr, size_t *n, FILE *stream)
 			if (temp == NULL)
 			{
 				free(*lineptr);
-				exit(1);
+				exit(EXIT_FAILURE);
 			}
 			*lineptr = temp;
 		}
@@ -64,3 +64,4 @@ int _myGetline(char **lineptr, size_t *n, FILE *stream)
 	}
 	return (length);
 }
+

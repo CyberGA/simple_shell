@@ -27,7 +27,7 @@ char *fileLocation(char *linCom, char *filePath)
 	}
 	else
 	{
-		write(2, "PATH env. variable not set\n", 27);
+		write(STDERR_FILENO, "PATH env. variable not set\n", 28);
 		return (NULL);
 	}
 	return (NULL);
