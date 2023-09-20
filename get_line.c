@@ -29,11 +29,10 @@ int _myGetline(char **lineptr, size_t *n, FILE *stream)
 	char *temp = NULL;
 
 	signal(SIGINT, sigintHandler);
-
 	if (*lineptr == NULL)
 	{
-		*n = 128;
-		*lineptr = (char *)malloc(sizeof(char *) * (*n));
+		*n = 1024;
+		*lineptr = (char *)malloc(sizeof(char) * (*n));
 		if (*lineptr == NULL)
 			return (-1);
 	}
@@ -42,7 +41,6 @@ int _myGetline(char **lineptr, size_t *n, FILE *stream)
 		if (length >= (*n - 1))
 		{
 			*n *= 2;
-			temp = (char *)realloc(*lineptr, *n);
 			if (temp == NULL)
 			{
 				free(*lineptr);
@@ -58,10 +56,11 @@ int _myGetline(char **lineptr, size_t *n, FILE *stream)
 			(*lineptr)[length] = '\0';
 			return (length);
 		}
+		if (length > 0 && buffer[i] == ' ' && (*lineptr)[length - 1] == ' ')
+			continue;
 		(*lineptr)[length] = buffer[i];
 		length++;
 		i++;
 	}
 	return (length);
 }
-
