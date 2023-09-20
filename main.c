@@ -16,13 +16,10 @@ int main(__attribute__((unused)) int argc,
 
 	while (1)
 	{
-		write(1, "$ ", 2);
+		/*write(1, "$ ", 2);*/
 		charRead = _myGetline(&buffer, &n, stdin);
-		if (charRead == -1)
-		{
-			free(buffer);
-			return (EXIT_SUCCESS);
-		}
+		end_of_file(buffer, charRead);
+		_trimbuff(buffer);
 		if (_emptystr(buffer) == 1)
 			continue;
 		buffer2 = malloc(sizeof(char) * charRead + 1);

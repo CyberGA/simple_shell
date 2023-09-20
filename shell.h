@@ -8,6 +8,12 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+#include <signal.h>
+
+/* for read/write buffers */
+#define READ_BUF_SIZE 1024
+#define WRITE_BUF_SIZE 1024
+#define BUF_FLUSH -1
 
 typedef struct stat stat_t;
 
@@ -29,5 +35,8 @@ void arr_cleaner(char **strArr);
 int is_delimiter(char, const char *);
 void processSetenv(char *variable, char *value);
 void processUnsetenv(char *variable);
+void _puts(char *str);
+int _putchar(char c);
+void _trimbuff(char *str);
 
 #endif /*SHELL.H*/

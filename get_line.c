@@ -1,6 +1,19 @@
 #include "shell.h"
 
 /**
+ * sigintHandler - blocks ctrl-C
+ * @sig_num: the signal number
+ *
+ * Return: void
+ */
+void sigintHandler(__attribute__((unused)) int sig_num)
+{
+	_puts("\n");
+	_puts("$ ");
+	_putchar(BUF_FLUSH);
+}
+
+/**
  * _myGetline - a function that reads an entire line from stream
  * @lineptr: pointer to lineptr
  * @n: size_t n
@@ -14,6 +27,8 @@ int _myGetline(char **lineptr, size_t *n, FILE *stream)
 	size_t length = 0, i = 0;
 	ssize_t charRead;
 	char *temp = NULL;
+
+	signal(SIGINT, sigintHandler);
 
 	if (*lineptr == NULL)
 	{
