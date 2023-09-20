@@ -11,6 +11,7 @@ void end_of_file(char *buffer, ssize_t charRead)
 	if (charRead == -1)
 	{
 		free(buffer);
+		/*write(STDOUT_FILENO, "\n", 1);*/
 		exit(EXIT_SUCCESS);
 	}
 }

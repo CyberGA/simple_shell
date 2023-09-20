@@ -32,3 +32,4 @@ char *fileLocation(char *linCom, char *filePath)
 	}
 	return (NULL);
 }
+

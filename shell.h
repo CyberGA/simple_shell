@@ -36,8 +36,9 @@ void arr_cleaner(char **strArr);
 int is_delimiter(char, const char *);
 void processSetenv(char *variable, char *value);
 void processUnsetenv(char *variable);
-void _puts(char *str);
-int _putchar(char c);
+void _puts(int, char *);
+int _putchar(int, char);
 void _trimbuff(char *str);
 
 #endif /*SHELL.H*/
+

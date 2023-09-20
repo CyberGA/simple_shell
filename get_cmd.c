@@ -1,12 +1,25 @@
 #include "shell.h"
 
 /**
+ * clear_mem - clear memory
+ * @argv: command line arguments
+ * @buffer: pointer to buffer
+ * @buffer2: pointer to buffer2
+ */
+void clear_mem(char **argv, char *buffer, char *buffer2)
+{
+	free(buffer);
+	free(buffer2);
+	arr_cleaner(argv);
+}
+/**
  * exit_with_status - a function that exit with status
  * @count: number or shell args
  * @comp: 0 if exit, 1 if not
  * @argv: pointer to shell args
  * @buffer: string memory to be freed
  * @buffer2: string memory needed to be freed
+ * Return: negative if exit status is not recognized
  */
 void exit_with_status(size_t count, int comp, char **argv,
 		char *buffer, char *buffer2)
@@ -15,16 +28,24 @@ void exit_with_status(size_t count, int comp, char **argv,
 
 	if (count == 1 && comp == 0)
 	{
-		free(buffer);
-		free(buffer2);
+		clear_mem(argv, buffer, buffer2);
 		exit(status);
 	}
 	else if (count > 1 && comp == 0)
 	{
+
+		if (argv[1][0] > '9' || argv[1][0] < '0')
+		{
+			write(STDERR_FILENO, "./hsh: 1: ", 10);
+			write(STDERR_FILENO, argv[0], _strlen(argv[0]));
+			write(STDERR_FILENO, ": Illegal number: ", 18);
+			write(STDERR_FILENO, argv[1], _strlen(argv[1]));
+			write(STDERR_FILENO, "\n", 1);
+			clear_mem(argv, buffer, buffer2);
+			exit(STDERR_FILENO);
+		}
 		status = atoi(argv[1]);
-		free(buffer);
-		free(buffer2);
-		arr_cleaner(argv);
+		clear_mem(argv, buffer, buffer2);
 		exit(status);
 	}
 }
@@ -76,3 +97,4 @@ char **get_cmd(char *split,
 	exit_with_status(count, comp, argv, buffer, buffer2);
 	return (argv);
 }
+

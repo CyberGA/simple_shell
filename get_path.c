@@ -51,3 +51,4 @@ char *get_path(char *pathToken, char *linCom, char *path2,
 	free(path2);
 	return (NULL);
 }
+

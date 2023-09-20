@@ -8,9 +8,9 @@
  */
 void sigintHandler(__attribute__((unused)) int sig_num)
 {
-	_puts("\n");
-	_puts("$ ");
-	_putchar(BUF_FLUSH);
+	_puts(STDOUT_FILENO, "\n");
+	_puts(STDOUT_FILENO, "$ ");
+	_putchar(STDOUT_FILENO, BUF_FLUSH);
 }
 
 /**
