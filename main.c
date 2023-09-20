@@ -1,13 +1,10 @@
 #include "shell.h"
+
 /**
  * main - function to build a simple shell
- * @argc: number of arguments
- * @argv: pointer to arguments
- * @envp: pointer to environment variables
  * Return: 0 or 1 or otherwise
  */
-int main(__attribute__((unused)) int argc,
-		__attribute__((unused)) char **argv, char **envp)
+int main(void)
 {
 	size_t n = 0;
 	char *buffer = NULL, *split = NULL, *buffer2 = NULL;
@@ -30,7 +27,7 @@ int main(__attribute__((unused)) int argc,
 		}
 		_strcpy(buffer2, buffer);
 		args = get_cmd(split, 0, buffer, buffer2);
-		execmd(args, envp, buffer, buffer2);
+		execmd(args, environ, buffer, buffer2);
 		arr_cleaner(args);
 		free(buffer2);
 	}

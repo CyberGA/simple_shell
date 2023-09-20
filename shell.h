@@ -11,10 +11,13 @@
 #include <signal.h>
 #include <errno.h>
 
+extern char **environ;
+
 /* for read/write buffers */
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
 #define BUF_FLUSH -1
+#define MAX_PATH_LEN 4096
 
 typedef struct stat stat_t;
 
@@ -39,6 +42,10 @@ void processUnsetenv(char *variable);
 void _puts(int, char *);
 int _putchar(int, char);
 void _trimbuff(char *str);
+char *_strncpy(char *dest, char *src, int n);
+int _strncmp(const char *s1, const char *s2, size_t n);
+char *getPATH(char *path, size_t maxLength);
+void clear_mem(char **, char *, char *);
 
 #endif /*SHELL.H*/
 

@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * fileLocation - generate the path for each command
  * @linCom: command line argument
@@ -7,13 +8,14 @@
  */
 char *fileLocation(char *linCom, char *filePath)
 {
-	char *path = NULL, *path2 = NULL;
+	char path[MAX_PATH_LEN], *path2 = NULL;
 	size_t lenOfCommand;
 	char *pathToken = NULL;
 	stat_t buff;
+	char *pathHolder, *result;
 
-	path = getenv("PATH");
-	if (path)
+	pathHolder = getPATH(path, MAX_PATH_LEN);
+	if (pathHolder)
 	{
 		path2 = _strdup((const char *)path);
 		if (path2 == NULL)
@@ -23,13 +25,16 @@ char *fileLocation(char *linCom, char *filePath)
 		}
 		lenOfCommand = _strlen(linCom);
 		pathToken = _strtokenizer(path2, ":");
-		return (get_path(pathToken, linCom, path2, lenOfCommand, buff, filePath));
+		result = get_path(pathToken, linCom, path2, lenOfCommand, buff, filePath);
+		return (result);
 	}
 	else
 	{
-		write(STDERR_FILENO, "PATH env. variable not set\n", 28);
+		write(STDOUT_FILENO, environ[0], _strlen(environ[0]));
+		write(STDOUT_FILENO, "\n", 1);
+		if (environ[2] != NULL)
+			write(STDOUT_FILENO, environ[2], _strlen(environ[2]));
+		write(STDOUT_FILENO, "\n", 1);
 		return (NULL);
 	}
-	return (NULL);
 }
-

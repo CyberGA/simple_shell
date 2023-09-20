@@ -1,18 +1,6 @@
 #include "shell.h"
 
 /**
- * clear_mem - clear memory
- * @argv: command line arguments
- * @buffer: pointer to buffer
- * @buffer2: pointer to buffer2
- */
-void clear_mem(char **argv, char *buffer, char *buffer2)
-{
-	free(buffer);
-	free(buffer2);
-	arr_cleaner(argv);
-}
-/**
  * exit_with_status - a function that exit with status
  * @count: number or shell args
  * @comp: 0 if exit, 1 if not
@@ -97,4 +85,3 @@ char **get_cmd(char *split,
 	exit_with_status(count, comp, argv, buffer, buffer2);
 	return (argv);
 }
-
