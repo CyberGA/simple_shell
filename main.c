@@ -18,9 +18,9 @@ int main(__attribute__((unused)) int argc,
 	{
 		charRead = _myGetline(&buffer, &n, stdin);
 		end_of_file(buffer, charRead);
-		_trimbuff(buffer);
 		if (_emptystr(buffer) == 1)
 			continue;
+		_trimbuff(buffer);
 		buffer2 = malloc(sizeof(char) * charRead + 1);
 		if (buffer2 == NULL)
 		{
