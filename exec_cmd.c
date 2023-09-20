@@ -29,9 +29,7 @@ void execmd(char **argv, char **envp, char *buffer, char *buffer2)
 				wait(&stat);
 				if (WEXITSTATUS(stat) == 2)
 				{
-					free(buffer);
-					free(buffer2);
-					arr_cleaner(argv);
+					clear_mem(argv, buffer, buffer2);
 					free(findPath);
 					exit(WEXITSTATUS(stat));
 				}
@@ -40,8 +38,8 @@ void execmd(char **argv, char **envp, char *buffer, char *buffer2)
 		}
 		else
 		{
-			write(STDERR_FILENO, execute, _strlen(execute));
-			write(STDERR_FILENO, ": command not found\n", 21);
+			clear_mem(argv, buffer, buffer2);
+			exit(EXIT_SUCCESS);
 		}
 	}
 	else
