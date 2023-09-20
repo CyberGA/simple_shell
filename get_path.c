@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * get_path - generate the path for each command
  * @pathToken: pointer to pathToken
@@ -15,13 +14,22 @@ char *get_path(char *pathToken, char *linCom, char *path2,
 {
 	size_t lenOfToken;
 
+	if (stat(linCom, &buff) == 0)
+	{
+		free(path2);
+		lenOfToken = _strlen(linCom);
+		filePath = malloc(lenOfCommand + lenOfToken + 2);
+		if (filePath == NULL)
+			return (NULL);
+		_strcpy(filePath, linCom);
+		return (filePath);
+	}
 	while (pathToken != NULL)
 	{
 		lenOfToken = _strlen(pathToken);
 		filePath = malloc(lenOfCommand + lenOfToken + 2);
 		if (filePath == NULL)
 		{
-			perror("malloc error!");
 			free(path2);
 			return (NULL);
 		}
@@ -36,12 +44,10 @@ char *get_path(char *pathToken, char *linCom, char *path2,
 		}
 		else
 		{
-			free(filePath);
 			pathToken = _strtokenizer(NULL, ":");
+			free(filePath);
 		}
 	}
 	free(path2);
-	if (stat(linCom, &buff) == 0)
-		return (linCom);
 	return (NULL);
 }
