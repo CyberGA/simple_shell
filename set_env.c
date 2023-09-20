@@ -8,11 +8,11 @@ void processSetenvCommand(char *variable, char *value);
 
 void processSetenv(char *variable, char *value)
 {
-	char setenvPath[MAX_PATH_LEN], *pathHolder;
+	char *setenvPath;
 	int setResult;
 
-	pathHolder = getPATH(setenvPath, MAX_PATH_LEN);
-	if (pathHolder != NULL)
+	setenvPath = getenv("PATH");
+	if (setenvPath != NULL)
 		setResult = setenv(variable, value, 1);
 	else
 		setResult = setenv(variable, value, 0);
@@ -25,11 +25,11 @@ void processSetenv(char *variable, char *value)
  */
 void processUnsetenv(char *variable)
 {
-	char unsetenvPath[MAX_PATH_LEN], *pathHolder;
+	char *unsetenvPath;
 	int unsetResult;
 
-	pathHolder = getPATH(unsetenvPath, MAX_PATH_LEN);
-	if (pathHolder != NULL)
+	unsetenvPath = getenv("PATH");
+	if (unsetenvPath != NULL)
 	{
 		unsetResult = unsetenv(variable);
 		if (unsetResult == -1)
@@ -82,4 +82,3 @@ void processSetenvCommand(char *variable, char *value)
 	}
 	free(buffer);
 }
-
