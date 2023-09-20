@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include <errno.h>
 
 /* for read/write buffers */
 #define READ_BUF_SIZE 1024
@@ -22,7 +23,7 @@ char *_strcpy(char *buff2, char *buff);
 int _strlen(char *s);
 char *_strcat(char *buff2, char *buff);
 char *_strdup(const char *originalString);
-void execmd(char **argv, char **envp);
+void execmd(char **argv, char **envp, char*, char*);
 char *fileLocation(char *linCom, char *);
 int _strcmp(char *str1, char *str2);
 char **get_cmd(char *, size_t, char *, char *);

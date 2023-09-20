@@ -30,7 +30,7 @@ int main(__attribute__((unused)) int argc,
 		}
 		_strcpy(buffer2, buffer);
 		args = get_cmd(split, 0, buffer, buffer2);
-		execmd(args, envp);
+		execmd(args, envp, buffer, buffer2);
 		arr_cleaner(args);
 		free(buffer2);
 	}
